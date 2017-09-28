@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiziqiu.shop.mapper.GoodsExpressMapper" >
+  <resultMap id="BaseResultMap" type="com.shiziqiu.shop.domain.GoodsExpress" >
+    <id column="express_id" property="expressId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="consign_name" property="consignName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="express_status" property="expressStatus" jdbcType="TINYINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    express_id, goods_id, account_id, consign_name, mobile, express_status, address, 
+    describe, province, province_id, city, city_id, area, area_id, create_time, update_time, 
+    remark
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nc_goods_express
+    where express_id = #{expressId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nc_goods_express
+    where express_id = #{expressId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.shiziqiu.shop.domain.GoodsExpress" >
+    insert into nc_goods_express (express_id, goods_id, account_id, 
+      consign_name, mobile, express_status, 
+      address, describe, province, 
+      province_id, city, city_id, 
+      area, area_id, create_time, 
+      update_time, remark)
+    values (#{expressId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{accountId,jdbcType=BIGINT}, 
+      #{consignName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{expressStatus,jdbcType=TINYINT}, 
+      #{address,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
+      #{area,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.shiziqiu.shop.domain.GoodsExpress" >
+    insert into nc_goods_express
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="expressId != null" >
+        express_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="consignName != null" >
+        consign_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="expressStatus != null" >
+        express_status,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="expressId != null" >
+        #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="consignName != null" >
+        #{consignName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="expressStatus != null" >
+        #{expressStatus,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiziqiu.shop.domain.GoodsExpress" >
+    update nc_goods_express
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="consignName != null" >
+        consign_name = #{consignName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="expressStatus != null" >
+        express_status = #{expressStatus,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where express_id = #{expressId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.shiziqiu.shop.domain.GoodsExpress" >
+    update nc_goods_express
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=BIGINT},
+      consign_name = #{consignName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      express_status = #{expressStatus,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      area = #{area,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where express_id = #{expressId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

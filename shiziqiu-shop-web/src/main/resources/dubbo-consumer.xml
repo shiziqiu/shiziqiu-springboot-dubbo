@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd   
+            http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<context:annotation-config />
+	<dubbo:application name="springboot-service-consumer-app" />
+	<dubbo:registry id="springboot-reg" protocol="zookeeper" address="${dubbo.registry.center}" />
+	<dubbo:annotation />
+
+	<!-- <context:component-scan base-package="com.springboot.*">
+		<context:include-filter type="annotation"
+			expression="com.alibaba.dubbo.config.annotation.Reference" />
+	</context:component-scan> -->
+
+	<dubbo:reference interface="com.shiziqiu.shop.service.UserService" id="userService"/>
+	<dubbo:reference interface="com.shiziqiu.shop.service.GoodsService" id="goodsService"/>
+	<dubbo:reference interface="com.shiziqiu.shop.service.GoodsExpressService" id="goodsExpressService"/>
+	<dubbo:reference interface="com.shiziqiu.shop.service.GoodsEvaluateService" id="goodsEvaluateService"/>
+	<dubbo:reference interface="com.shiziqiu.shop.service.GoodsDetailsService" id="goodsDetailsService"/>
+
+</beans>  

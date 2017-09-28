@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiziqiu.shop.mapper.GoodsEvaluateMapper" >
+  <resultMap id="BaseResultMap" type="com.shiziqiu.shop.domain.GoodsEvaluate" >
+    <id column="evaluate_id" property="evaluateId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_star" property="goodsStar" jdbcType="TINYINT" />
+    <result column="evaluate_status" property="evaluateStatus" jdbcType="TINYINT" />
+    <result column="evaluate_desc" property="evaluateDesc" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="account_avtar" property="accountAvtar" jdbcType="VARCHAR" />
+    <result column="account_nick_name" property="accountNickName" jdbcType="VARCHAR" />
+    <result column="evaluate_images" property="evaluateImages" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    evaluate_id, goods_id, goods_star, evaluate_status, evaluate_desc, account_id, account_avtar, 
+    account_nick_name, evaluate_images, create_time, remark
+  </sql>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nc_goods_evaluate
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nc_goods_evaluate
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </delete>
+ 
+  <insert id="insert" parameterType="com.shiziqiu.shop.domain.GoodsEvaluate" >
+    insert into nc_goods_evaluate (evaluate_id, goods_id, goods_star, 
+      evaluate_status, evaluate_desc, account_id, 
+      account_avtar, account_nick_name, evaluate_images, 
+      create_time, remark)
+    values (#{evaluateId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsStar,jdbcType=TINYINT}, 
+      #{evaluateStatus,jdbcType=TINYINT}, #{evaluateDesc,jdbcType=VARCHAR}, #{accountId,jdbcType=BIGINT}, 
+      #{accountAvtar,jdbcType=VARCHAR}, #{accountNickName,jdbcType=VARCHAR}, #{evaluateImages,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.shiziqiu.shop.domain.GoodsEvaluate" >
+    insert into nc_goods_evaluate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="evaluateId != null" >
+        evaluate_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsStar != null" >
+        goods_star,
+      </if>
+      <if test="evaluateStatus != null" >
+        evaluate_status,
+      </if>
+      <if test="evaluateDesc != null" >
+        evaluate_desc,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountAvtar != null" >
+        account_avtar,
+      </if>
+      <if test="accountNickName != null" >
+        account_nick_name,
+      </if>
+      <if test="evaluateImages != null" >
+        evaluate_images,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="evaluateId != null" >
+        #{evaluateId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStar != null" >
+        #{goodsStar,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateStatus != null" >
+        #{evaluateStatus,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateDesc != null" >
+        #{evaluateDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="accountAvtar != null" >
+        #{accountAvtar,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNickName != null" >
+        #{accountNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateImages != null" >
+        #{evaluateImages,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiziqiu.shop.domain.GoodsEvaluate" >
+    update nc_goods_evaluate
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStar != null" >
+        goods_star = #{goodsStar,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateStatus != null" >
+        evaluate_status = #{evaluateStatus,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateDesc != null" >
+        evaluate_desc = #{evaluateDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="accountAvtar != null" >
+        account_avtar = #{accountAvtar,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNickName != null" >
+        account_nick_name = #{accountNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateImages != null" >
+        evaluate_images = #{evaluateImages,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.shiziqiu.shop.domain.GoodsEvaluate" >
+    update nc_goods_evaluate
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_star = #{goodsStar,jdbcType=TINYINT},
+      evaluate_status = #{evaluateStatus,jdbcType=TINYINT},
+      evaluate_desc = #{evaluateDesc,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=BIGINT},
+      account_avtar = #{accountAvtar,jdbcType=VARCHAR},
+      account_nick_name = #{accountNickName,jdbcType=VARCHAR},
+      evaluate_images = #{evaluateImages,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </update>
+</mapper>

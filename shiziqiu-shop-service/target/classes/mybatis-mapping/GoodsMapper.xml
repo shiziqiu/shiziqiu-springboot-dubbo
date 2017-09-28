@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiziqiu.shop.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.shiziqiu.shop.domain.Goods" >
+    <id column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_uuid" property="goodsUuid" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="goods_purch_price" property="goodsPurchPrice" jdbcType="DOUBLE" />
+    <result column="goods_concess_rate" property="goodsConcessRate" jdbcType="DOUBLE" />
+    <result column="goods_label" property="goodsLabel" jdbcType="VARCHAR" />
+    <result column="goods_cover" property="goodsCover" jdbcType="VARCHAR" />
+    <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR" />
+    <result column="goods_status" property="goodsStatus" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    goods_id, goods_uuid, goods_name, goods_num, goods_price, goods_purch_price, goods_concess_rate, 
+    goods_label, goods_cover, goods_desc, goods_status, create_time, remark, update_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nc_goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nc_goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.shiziqiu.shop.domain.Goods" >
+    insert into nc_goods (goods_id, goods_uuid, goods_name, 
+      goods_num, goods_price, goods_purch_price, 
+      goods_concess_rate, goods_label, goods_cover, 
+      goods_desc, goods_status, create_time, 
+      remark, update_time)
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsUuid,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE}, #{goodsPurchPrice,jdbcType=DOUBLE}, 
+      #{goodsConcessRate,jdbcType=DOUBLE}, #{goodsLabel,jdbcType=VARCHAR}, #{goodsCover,jdbcType=VARCHAR}, 
+      #{goodsDesc,jdbcType=VARCHAR}, #{goodsStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.shiziqiu.shop.domain.Goods" >
+    insert into nc_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsPurchPrice != null" >
+        goods_purch_price,
+      </if>
+      <if test="goodsConcessRate != null" >
+        goods_concess_rate,
+      </if>
+      <if test="goodsLabel != null" >
+        goods_label,
+      </if>
+      <if test="goodsCover != null" >
+        goods_cover,
+      </if>
+      <if test="goodsDesc != null" >
+        goods_desc,
+      </if>
+      <if test="goodsStatus != null" >
+        goods_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUuid != null" >
+        #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPurchPrice != null" >
+        #{goodsPurchPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsConcessRate != null" >
+        #{goodsConcessRate,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsLabel != null" >
+        #{goodsLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCover != null" >
+        #{goodsCover,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDesc != null" >
+        #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatus != null" >
+        #{goodsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiziqiu.shop.domain.Goods" >
+    update nc_goods
+    <set >
+      <if test="goodsUuid != null" >
+        goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPurchPrice != null" >
+        goods_purch_price = #{goodsPurchPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsConcessRate != null" >
+        goods_concess_rate = #{goodsConcessRate,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsLabel != null" >
+        goods_label = #{goodsLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCover != null" >
+        goods_cover = #{goodsCover,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDesc != null" >
+        goods_desc = #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatus != null" >
+        goods_status = #{goodsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.shiziqiu.shop.domain.Goods" >
+    update nc_goods
+    set goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_purch_price = #{goodsPurchPrice,jdbcType=DOUBLE},
+      goods_concess_rate = #{goodsConcessRate,jdbcType=DOUBLE},
+      goods_label = #{goodsLabel,jdbcType=VARCHAR},
+      goods_cover = #{goodsCover,jdbcType=VARCHAR},
+      goods_desc = #{goodsDesc,jdbcType=VARCHAR},
+      goods_status = #{goodsStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

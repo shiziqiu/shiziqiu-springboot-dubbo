@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiziqiu.shop.mapper.GoodsDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.shiziqiu.shop.domain.GoodsDetails" >
+    <id column="goods_detail_id" property="goodsDetailId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="goods_images" property="goodsImages" jdbcType="VARCHAR" />
+    <result column="goods_video" property="goodsVideo" jdbcType="VARCHAR" />
+    <result column="goods_selling_point" property="goodsSellingPoint" jdbcType="VARCHAR" />
+    <result column="goods_specific" property="goodsSpecific" jdbcType="VARCHAR" />
+    <result column="goods_size" property="goodsSize" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    goods_detail_id, goods_id, describe, goods_images, goods_video, goods_selling_point, 
+    goods_specific, goods_size, create_time, update_time, remark
+  </sql>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nc_goods_details
+    where goods_detail_id = #{goodsDetailId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nc_goods_details
+    where goods_detail_id = #{goodsDetailId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.shiziqiu.shop.domain.GoodsDetails" >
+    insert into nc_goods_details (goods_detail_id, goods_id, describe, 
+      goods_images, goods_video, goods_selling_point, 
+      goods_specific, goods_size, create_time, 
+      update_time, remark)
+    values (#{goodsDetailId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, 
+      #{goodsImages,jdbcType=VARCHAR}, #{goodsVideo,jdbcType=VARCHAR}, #{goodsSellingPoint,jdbcType=VARCHAR}, 
+      #{goodsSpecific,jdbcType=VARCHAR}, #{goodsSize,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.shiziqiu.shop.domain.GoodsDetails" >
+    insert into nc_goods_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsDetailId != null" >
+        goods_detail_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="goodsImages != null" >
+        goods_images,
+      </if>
+      <if test="goodsVideo != null" >
+        goods_video,
+      </if>
+      <if test="goodsSellingPoint != null" >
+        goods_selling_point,
+      </if>
+      <if test="goodsSpecific != null" >
+        goods_specific,
+      </if>
+      <if test="goodsSize != null" >
+        goods_size,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsDetailId != null" >
+        #{goodsDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImages != null" >
+        #{goodsImages,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsVideo != null" >
+        #{goodsVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSellingPoint != null" >
+        #{goodsSellingPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSpecific != null" >
+        #{goodsSpecific,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSize != null" >
+        #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiziqiu.shop.domain.GoodsDetails" >
+    update nc_goods_details
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImages != null" >
+        goods_images = #{goodsImages,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsVideo != null" >
+        goods_video = #{goodsVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSellingPoint != null" >
+        goods_selling_point = #{goodsSellingPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSpecific != null" >
+        goods_specific = #{goodsSpecific,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSize != null" >
+        goods_size = #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_detail_id = #{goodsDetailId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.shiziqiu.shop.domain.GoodsDetails" >
+    update nc_goods_details
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      describe = #{describe,jdbcType=VARCHAR},
+      goods_images = #{goodsImages,jdbcType=VARCHAR},
+      goods_video = #{goodsVideo,jdbcType=VARCHAR},
+      goods_selling_point = #{goodsSellingPoint,jdbcType=VARCHAR},
+      goods_specific = #{goodsSpecific,jdbcType=VARCHAR},
+      goods_size = #{goodsSize,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where goods_detail_id = #{goodsDetailId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>
